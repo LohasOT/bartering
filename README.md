@@ -1,6 +1,6 @@
   # SmarterBarter
 
-![Badge for GitHub last commit](https://img.shields.io/github/last-commit/NathanMontelli/smarterBarter?style=flat&logo=appveyor) ![Badge for GitHub commit activity](https://img.shields.io/github/commit-activity/w/NathanMontelli/smarterBarter?color=purple)
+![Badge for GitHub last commit](https://img.shields.io/github/last-commit/LohasOT/bartering?style=flat&logo=appveyor) ![Badge for GitHub commit activity](https://img.shields.io/github/commit-activity/w/LohasOT/bartering?color=purple)
 
   
   ## Table of Content
