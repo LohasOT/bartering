@@ -22,7 +22,6 @@ User.hasMany(Note, { foreignKey: 'uid' })
 Note.belongsTo(User, { foreignKey: 'uid' })
 
 module.exports = { 
-  Category,
   User, 
   Item,
   Note
