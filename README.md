@@ -40,6 +40,10 @@
 
     Post or comment on items and interact with other members on the website.
 
+  ## Deployed Page
+
+  <a href="https://smartbartering.herokuapp.com/login.html" class="btn btn-primary">Deployed Heroku Page</a>
+
   ## Questions
 If you have any questions, you may contact using the information below:
 
@@ -54,3 +58,7 @@ If you have any questions, you may contact using the information below:
     Email: alntruong7@gmail.com
     Email: nathanmontelli@gmail.com
     Email: durantimothy21@gmail.com
+
+  <img src="https://user-images.githubusercontent.com/91640571/148441785-a3920a10-466e-49a8-ab92-86b2c423dcea.png" alt="pic1">
+
+  <img src="https://user-images.githubusercontent.com/91640571/148442022-f6e8c8c4-d5b2-44a0-9259-99378e2b1311.png" alt="pic1">
