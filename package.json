@@ -1,7 +1,7 @@
 {
   "name": "smarterbarter",
   "version": "1.0.0",
-  "description": "",
+  "description": "![Badge for GitHub last commit](https://img.shields.io/github/last-commit/NathanMontelli/smarterBarter?style=flat&logo=appveyor) ![Badge for GitHub commit activity](https://img.shields.io/github/commit-activity/w/NathanMontelli/smarterBarter?color=purple)",
   "engines": {
     "node": "16.13.1",
     "npm": "8.1.2"
@@ -24,23 +24,16 @@
   },
   "homepage": "https://github.com/NathanMontelli/smarterBarter#readme",
   "dependencies": {
-    "@heroku-cli/plugin-buildpacks": "7.33.3",
-    "@heroku/buildpack-registry": "^1.0.1",
-    "async-file": "^2.0.2",
-    "cli-ux": "^6.0.6",
-    "debug": "^4.3.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.2",
-    "got": "^12.0.0",
-    "heroku": "^7.33.3",
-    "heroku-cli": "^6.15.31",
+    "heroku": "^7.59.2",
     "jsonwebtoken": "^8.5.1",
     "mysql2": "^2.3.3",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
-    "passport-local-sequelize": "^0.8.0",
-    "phoenix": "^1.6.6",
+    "passport-local-sequelize": "^0.9.0",
     "sequelize": "^6.12.5",
     "sweetalert2": "^11.3.3"
-  }
+  },
+  "devDependencies": {}
 }
