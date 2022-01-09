@@ -224,6 +224,14 @@
 
     <script>
 
+      function openNav() {
+        document.getElementById("mySidenav").style.width = "250px";
+      }
+
+      function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+      }
+
       let postId = localStorage.getItem('postId')
       document.getElementById("editPost").addEventListener('click', event => {
         event.preventDefault()
@@ -255,8 +263,6 @@
             }, 1000);
           })
       })
-
-
 
         async function logoutUser() {
           localStorage.removeItem('username')
