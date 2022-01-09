@@ -24,4 +24,9 @@ router.get('/edit', (req, res) => {
 router.get('/post', (req, res) => {
   res.sendFile(join(__dirname, '..', 'public', 'itemPage.html'))
 })
+
+// router.get('/post/:id', (req, res) => {
+//   res.sendFile(join(__dirname, '..', 'public', 'itemPage.html'))
+// })
+
 module.exports = router
