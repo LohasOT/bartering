@@ -241,7 +241,7 @@
           body: document.getElementById('description').value,
           photo: document.getElementById('imgLink').value,
           condition: document.getElementById('status').value,
-          type: document.getElementById('category').value
+          type: document.getElementById('category').value,
         }
         axios.put(`/api/items/${postId}`, editedPost, {
           headers: {

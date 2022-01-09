@@ -190,8 +190,15 @@
     </div>
   </div>
   <br>
-  
-      <div id="posts" class="card-deck container"></div>
+
+  <h1 class="text-center">Active Trades</h1>
+      <div id="unTradedPosts" class="card-deck container">
+      <br>
+      </div>
+      <br>
+  <h1 class="text-center">Past Trades</h1>
+      <div id="tradedPosts" class="card-deck container">
+      </div>
 
   <div class="footer_section layout_padding">
     <div class="container">
@@ -237,7 +244,8 @@
           body: document.getElementById('description').value,
           photo: document.getElementById('imgLink').value,
           condition: document.getElementById('status').value,
-          type: document.getElementById('category').value
+          type: document.getElementById('category').value,
+          isTraded: 0
         }
         axios.post('/api/items', newPost, {
           headers: {
@@ -273,52 +281,83 @@
                 let items = res.data.items
                 let userInfo = res.data
                 items.forEach(item => {
-                  let itemElem = document.createElement('div')
-                  itemElem.innerHTML = `
-            <br>
-            <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 24rem">
-              <img src="${item.photo}" class="card-img-top" alt="itemPicture">
-              <div class="card-body">
-                <h3 class="card-title data-postid="${item.id}"> ${item.title}</h3>
+                  if (item.isTraded == 0) {
+                    
+                    let itemElem = document.createElement('div')
+                    itemElem.innerHTML = `
+              <br>
+              <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem">
+                <img src="${item.photo}" class="card-img-top" alt="itemPicture">
+                <div class="card-body">
+                  <h3 class="card-title data-postid="${item.id}"> ${item.title}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Posted by ${userInfo.username} at ${item.createdAt.slice(0, -14)}</li>
+                  <li class="list-group-item">Item Name: ${item.item_name}</li>
+                  <li class="list-group-item">Condition: ${item.condition}</li>
+                  <li class="list-group-item">Description: ${item.body}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="/post" class="btn btn-dark btn-md goToPost" data-postid="${item.id}" role="button">More Detail</a>
+                  <button class="btn btn-dark btn-md deleteItem" data-postid="${item.id}">Delete Post</button>
+                  <br><br>
+                  <button id="editItem" class="btn btn-dark btn-md goToEdit" data-postid="${item.id}">Edit Post</button>
+                  <button class="btn btn-dark btn-md markAsTraded" data-postid="${item.id}">Mark As Traded</button>
+                </div>
               </div>
-              <ul class="list-group list-group-flush">
-                <li class="list-group-item">Posted by ${userInfo.username} at ${item.createdAt.slice(0, -14)}</li>
-                <li class="list-group-item">Item Name: ${item.item_name}</li>
-                <li class="list-group-item">Condition: ${item.condition}</li>
-                <li class="list-group-item">Description: ${item.body}</li>
-              </ul>
-              <div class="card-body">
-                <a href="/post" class="btn btn-dark btn-sm goToPost" data-postid="${item.id}" role="button">More Detail</a>
-                <button id="deleteItem" class="btn btn-dark btn-sm" data-postid="${item.id}">Delete Post</button>
-                <button id="editItem" class="btn btn-dark btn-sm goToEdit" data-postid="${item.id}">Edit Post</button>
+              <br>
+              `
+              document.getElementById('unTradedPosts').prepend(itemElem)
+            }else{
+              let itemElem = document.createElement('div')
+                    itemElem.innerHTML = `
+              <br>
+              <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem">
+                <img src="${item.photo}" class="card-img-top" alt="itemPicture">
+                <div class="card-body">
+                  <h3 class="card-title data-postid="${item.id}"> ${item.title}</h3>
+                </div>
+                <ul class="list-group list-group-flush">
+                  <li class="list-group-item">Posted by ${userInfo.username} at ${item.createdAt.slice(0, -14)}</li>
+                  <li class="list-group-item">Item Name: ${item.item_name}</li>
+                  <li class="list-group-item">Condition: ${item.condition}</li>
+                  <li class="list-group-item">Description: ${item.body}</li>
+                </ul>
+                <div class="card-body">
+                  <a href="/post" class="btn btn-dark btn-md goToPost" data-postid="${item.id}" role="button">More Detail</a>
+                  <button class="btn btn-dark btn-md deleteItem" data-postid="${item.id}">Delete Post</button>
+                  <br><br>
+                  <button id="editItem" class="btn btn-dark btn-md goToEdit" data-postid="${item.id}">Edit Post</button>
+                </div>
               </div>
-            </div>
-            <br>
-            `
-            document.getElementById('posts').prepend(itemElem)
-
-            document.getElementById("deleteItem").addEventListener('click', event => {
-                event.preventDefault();
-                let headers = {
-                          'Authorization': `Bearer ${localStorage.getItem('token')}`
-                        }
-      
-                        axios.delete(`/api/items/${item.id}`, {
-                          headers: {
-                            'Authorization': `Bearer ${localStorage.getItem('token')}`
-                          }
-                        })
-                          .then(res => {
-                            location = '/profile'
-                          }).catch(err => {
-                            console.log(err);
-                          })
-                      })
-
+              <br>
+              `
+            document.getElementById('tradedPosts').prepend(itemElem)
+            }
+            
           })
         })
       }
       
+      document.addEventListener('click', event => {
+        if (event.target.classList.contains('deleteItem')) {
+          event.preventDefault()
+          let headers = {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                  }
+
+                  axios.delete(`/api/items/${item.id}`, {
+                    headers: {
+                      'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    }
+                  })
+                    .then(res => {
+                      location = '/profile'
+                    }).catch(err => {
+                      console.log(err);
+                    })
+                }
+              })
 
 
     document.addEventListener('click', event => {
@@ -335,6 +374,35 @@
           location = '/edit'
         }
       })
+      document.addEventListener('click', event => {
+          if (event.target.classList.contains('markAsTraded')) {
+            console.log('ping')
+            axios.put(`/api/items/${event.target.dataset.postid}`,
+            {
+              isTraded: 1
+            }
+            , {
+              headers: {
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+              }
+            })
+              .then(res => {
+                console.log(res.data)
+                console.log("edited")
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Your Item Has Been Marked As Traded',
+                  showConfirmButton: false,
+                  timer: 1000
+                })
+                window.setTimeout(function () {
+                  // Move to a new location or you can do something else
+                  location = "/profile";
+                }, 1000);
+              })
+            location.reload
+          }
+        })
         async function logoutUser() {
           localStorage.removeItem('username')
           localStorage.removeItem('token')

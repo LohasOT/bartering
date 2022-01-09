@@ -28,6 +28,10 @@ Item.init({
   condition: {
     type: DataTypes.STRING,
     allowNull: false
+  },
+  isTraded: {
+    type: DataTypes.BOOLEAN,
+    allowNull: false
   }
 }, {
   sequelize,

@@ -27,7 +27,8 @@ router.post('/items', passport.authenticate('jwt'), async function (req, res) {
     uid: req.user.id,
     photo: req.body.photo,
     type: req.body.type,
-    condition: req.body.condition
+    condition: req.body.condition,
+    isTraded: req.body.isTraded
   })
   res.json()
 })
