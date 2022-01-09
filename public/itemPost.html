@@ -52,8 +52,8 @@
         <div class="containt_main">
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="index.html">Home</a>
-            <a href="itemPost.html">Post Your Item</a>
+            <a href="/home">Home</a>
+            <a href="/profile">Post Your Item</a>
             <a href="" id="logout">Logout</a>
             <!-- <a href="jewelery.html">Jewelry</a> -->
           </div>
@@ -75,7 +75,7 @@
           <div class="header_box">
             <div class="login_menu">
               <ul>
-                <li><a href="/itemPost.html">
+                <li><a href="/profile">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span class="padding_10">Profile</span></a>
                 </li>
@@ -99,7 +99,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">Welcome to <br>Smarter Barter</h1>
-                  <div class="buynow_bt"><a href="/index.html">Discover</a></div>
+                  <div class="buynow_bt"><a href="/home">Discover</a></div>
                 </div>
               </div>
             </div>
@@ -107,7 +107,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">Get Started With <br>Your First Post</h1>
-                  <div class="buynow_bt"><a href="/itemPost.html">Post</a></div>
+                  <div class="buynow_bt"><a href="/profile">Post</a></div>
                 </div>
               </div>
             </div>
@@ -115,7 +115,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">See What <br>Others Are Selling</h1>
-                  <div class="buynow_bt"><a href="/index.html">Discover</a></div>
+                  <div class="buynow_bt"><a href="/home">Discover</a></div>
                 </div>
               </div>
             </div>
@@ -288,7 +288,7 @@
                 <li class="list-group-item">Description: ${item.body}</li>
               </ul>
               <div class="card-body">
-                <a href="/itemPage.html" class="btn btn-dark btn-sm goToPost" data-postid="${item.id}" role="button">More Detail</a>
+                <a href="/post" class="btn btn-dark btn-sm goToPost" data-postid="${item.id}" role="button">More Detail</a>
                 <button id="deleteItem" class="btn btn-dark btn-sm" data-postid="${item.id}">Delete Post</button>
                 <button id="editItem" class="btn btn-dark btn-sm goToEdit" data-postid="${item.id}">Edit Post</button>
               </div>
@@ -309,7 +309,7 @@
                           }
                         })
                           .then(res => {
-                            location = '/itemPost.html'
+                            location = '/profile'
                           }).catch(err => {
                             console.log(err);
                           })
@@ -325,20 +325,20 @@
       if (event.target.classList.contains('goToPost')) {
       console.log('ping')
       localStorage.setItem('postId', event.target.dataset.postid)
-      location = '/itemPage.html'
+      location = '/post'
               }
             })
       document.addEventListener('click', event => {
         if (event.target.classList.contains('goToEdit')) {
           console.log('ping')
           localStorage.setItem('postId', event.target.dataset.postid)
-          location = '/editItem.html'
+          location = '/edit'
         }
       })
         async function logoutUser() {
           localStorage.removeItem('username')
           localStorage.removeItem('token')
-          location = '/login.html'
+          location = '/login'
         }
 
         document.getElementById("logout").addEventListener('click', event => {

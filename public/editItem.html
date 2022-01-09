@@ -53,8 +53,8 @@
         <div class="containt_main">
           <div id="mySidenav" class="sidenav">
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-            <a href="index.html">Home</a>
-            <a href="itemPost.html">Post Your Item</a>
+            <a href="/home">Home</a>
+            <a href="/profile">Post Your Item</a>
             <a href="" id="logout">Logout</a>
             <!-- <a href="jewelery.html">Jewelry</a> -->
           </div>
@@ -77,7 +77,7 @@
           <div class="header_box">
             <div class="login_menu">
               <ul>
-                <li><a href="/itemPost.html">
+                <li><a href="/profile">
                     <i class="fa fa-user" aria-hidden="true"></i>
                     <span class="padding_10">Profile</span></a>
                 </li>
@@ -101,7 +101,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">Welcome to <br>Smarter Barter</h1>
-                  <div class="buynow_bt"><a href="/index.html">Discover</a></div>
+                  <div class="buynow_bt"><a href="/home">Discover</a></div>
                 </div>
               </div>
             </div>
@@ -109,7 +109,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">Get Started With <br>Your First Post</h1>
-                  <div class="buynow_bt"><a href="/itemPost.html">Post</a></div>
+                  <div class="buynow_bt"><a href="/profile">Post</a></div>
                 </div>
               </div>
             </div>
@@ -117,7 +117,7 @@
               <div class="row">
                 <div class="col-sm-12">
                   <h1 class="banner_taital">See What <br>Others Are Selling</h1>
-                  <div class="buynow_bt"><a href="/index.html">Discover</a></div>
+                  <div class="buynow_bt"><a href="/home">Discover</a></div>
                 </div>
               </div>
             </div>
@@ -259,7 +259,7 @@
             })
             window.setTimeout(function () {
               // Move to a new location or you can do something else
-              location = "/itemPost.html";
+              location = "/profile";
             }, 1000);
           })
       })
@@ -267,7 +267,7 @@
         async function logoutUser() {
           localStorage.removeItem('username')
           localStorage.removeItem('token')
-          location = '/login.html'
+          location = '/login'
         }
 
         document.getElementById("logout").addEventListener('click', event => {
