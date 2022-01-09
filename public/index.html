@@ -164,6 +164,12 @@
       document.getElementById("mySidenav").style.width = "0";
     }
 
+    if (localStorage.getItem('token') === null) {
+      location = '/login.html'
+    } else {
+      
+    }
+    
     async function logoutUser() {
         localStorage.removeItem('username')
         localStorage.removeItem('token')
