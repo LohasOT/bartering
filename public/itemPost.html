@@ -276,7 +276,7 @@
                   let itemElem = document.createElement('div')
                   itemElem.innerHTML = `
             <br>
-            <div class="card shadow-lg p-3 mb-5 bg-white rounded" style="width: 20rem">
+            <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 24rem">
               <img src="${item.photo}" class="card-img-top" alt="itemPicture">
               <div class="card-body">
                 <h3 class="card-title data-postid="${item.id}"> ${item.title}</h3>
@@ -288,16 +288,37 @@
                 <li class="list-group-item">Description: ${item.body}</li>
               </ul>
               <div class="card-body">
-                <a href="/itemPage.html" class="btn btn-dark btn-lg goToPost" data-postid="${item.id}" tabindex="-1" role="button">More Detail</a>
+                <a href="/itemPage.html" class="btn btn-dark btn-sm goToPost" data-postid="${item.id}" role="button">More Detail</a>
+                <button id="deleteItem" class="btn btn-dark btn-sm" data-postid="${item.id}">Delete Post</button>
+                <button id="editItem" class="btn btn-dark btn-sm goToEdit" data-postid="${item.id}">Edit Post</button>
               </div>
             </div>
             <br>
             `
             document.getElementById('posts').prepend(itemElem)
 
+            document.getElementById("deleteItem").addEventListener('click', event => {
+                event.preventDefault();
+                let headers = {
+                          'Authorization': `Bearer ${localStorage.getItem('token')}`
+                        }
+      
+                        axios.delete(`/api/items/${item.id}`, {
+                          headers: {
+                            'Authorization': `Bearer ${localStorage.getItem('token')}`
+                          }
+                        })
+                          .then(res => {
+                            location = '/itemPost.html'
+                          }).catch(err => {
+                            console.log(err);
+                          })
+                      })
           })
         })
       }
+      
+
 
     document.addEventListener('click', event => {
       if (event.target.classList.contains('goToPost')) {
