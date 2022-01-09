@@ -314,6 +314,7 @@
                             console.log(err);
                           })
                       })
+
           })
         })
       }
@@ -327,7 +328,13 @@
       location = '/itemPage.html'
               }
             })
-
+      document.addEventListener('click', event => {
+        if (event.target.classList.contains('goToEdit')) {
+          console.log('ping')
+          localStorage.setItem('postId', event.target.dataset.postid)
+          location = '/editItem.html'
+        }
+      })
         async function logoutUser() {
           localStorage.removeItem('username')
           localStorage.removeItem('token')
