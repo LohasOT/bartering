@@ -345,13 +345,9 @@
       document.addEventListener('click', event => {
         if (event.target.classList.contains('deleteItem')) {
           event.preventDefault()
-          let headers = {
-                    'Authorization': `Bearer ${localStorage.getItem('token')}`
-                  }
-
-                  axios.delete(`/api/items/${event.target.dataset.postid}`, {
-                    headers: {
-                      'Authorization': `Bearer ${localStorage.getItem('token')}`
+            axios.delete(`/api/items/${event.target.dataset.postid}`, {
+              headers: {
+              'Authorization': `Bearer ${localStorage.getItem('token')}`
                     }
                   })
                     .then(res => {
