@@ -64,7 +64,7 @@
           <div class="main">
             <!-- Another variation with a button -->
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="Search Item">
+              <input id="searchBar" type="text" class="form-control" placeholder="Search Item">
               <div class="input-group-append">
                 <button class="btn btn-secondary" type="button"
                   style="background-color: #f26522; border-color:#f26522 ">
@@ -176,6 +176,17 @@
       
     }
     
+    let searchBar = document.getElementById('searchBar');
+    let searchedItem = [];
+
+    searchBar.addEventListener('keyup', (e) => {
+      const searchTerms = e.target.value
+      const filteredItems = searchedItem.filter( item => {
+        return item.title.includes(searchTerms)
+      })
+      console.log(filteredItems)
+    })
+
     async function logoutUser() {
         localStorage.removeItem('username')
         localStorage.removeItem('token')
