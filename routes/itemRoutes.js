@@ -3,6 +3,8 @@ const { Item, Note, User } = require('../models')
 const passport = require('passport')
 const req = require('express/lib/request')
 const res = require('express/lib/response')
+const Sequelize = require('sequelize')
+const Op = Sequelize.Op
 
 // GET all posts
 router.get('/items', passport.authenticate('jwt'), async function (req, res) {

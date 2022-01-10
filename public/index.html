@@ -179,14 +179,10 @@
     let searchBar = document.getElementById('searchBar');
     let searchedItem = [];
 
-    searchBar.addEventListener('keyup', (e) => {
-      const searchTerms = e.target.value
-      const filteredItems = searchedItem.filter( item => {
-        return item.title.includes(searchTerms)
-      })
-      console.log(filteredItems)
-    })
+    // searchBar.addEventListener('keyup', (e) => {
 
+        
+  
     async function logoutUser() {
         localStorage.removeItem('username')
         localStorage.removeItem('token')
