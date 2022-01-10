@@ -137,12 +137,11 @@
       <br>
       <div id="title" class="item-name">
       </div>
-      <div id="itemName" class="item-price"></div>
+      <div id="itemName" class="item-condition"></div>
       <div id="condition" class="item-condition"></div>
       <div id="user" class="item-condition"></div>
       <div class="description-title">Description</div>
-      <div id="description" class="item-description">
-      </div>
+      <div id="description" class="item-description"></div>
 
       <hr>
       <br>
@@ -154,6 +153,7 @@
       <button id="submitComment" type="button" class="btn btn-dark btn-lg btn-block" data-target="#exampleModal">
         Submit Comment
       </button>
+      <br><br>
       <div class="description-title">Comments</div>
       <hr>
       <div id="notes" class="row"></div>
@@ -208,7 +208,7 @@
           let item = res.data
 
           document.getElementById("title").innerHTML = `${item.title} `
-          document.getElementById("itemName").innerHTML = `${item.item_name} `
+          document.getElementById("itemName").innerHTML = `Brand: ${item.item_name} `
           document.getElementById("description").innerHTML = `${item.body} `
           document.getElementById("condition").innerHTML = ` Condition: ${item.condition} `
           document.getElementById("imgLink").innerHTML = `<img src="${item.photo}" class="card-img-top" alt="itemPicture">`
@@ -249,7 +249,7 @@
             notes.forEach(note => {
               let noteElem = document.createElement('div')
               noteElem.innerHTML = `
-              <h5>${note.User.username} Commented At ${note.createdAt.slice(0, -14)} </h5>
+              <h5>${note.User.username} commented at ${note.createdAt.slice(0, -14)} </h5>
               <h6>${note.body}</h6>
               <hr>
               `
