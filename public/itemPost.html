@@ -192,12 +192,12 @@
   <br>
 
   <h1 class="text-center">Active Trades</h1>
-      <div id="unTradedPosts" class="card-deck container">
+      <div id="unTradedPosts" class="row">
       <br>
       </div>
       <br>
   <h1 class="text-center">Past Trades</h1>
-      <div id="tradedPosts" class="card-deck container">
+      <div id="tradedPosts" class="row">
       </div>
 
   <div class="footer_section layout_padding">
@@ -284,6 +284,7 @@
                   if (item.isTraded == 0) {
                     
                     let itemElem = document.createElement('div')
+                    itemElem.classList.add("col-sm-4")
                     itemElem.innerHTML = `
               <br>
               <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem">
@@ -310,6 +311,7 @@
               document.getElementById('unTradedPosts').prepend(itemElem)
             }else{
               let itemElem = document.createElement('div')
+              itemElem.classList.add("col-sm-4")
                     itemElem.innerHTML = `
               <br>
               <div class="card border-warning shadow-lg p-3 mb-5 bg-white rounded" style="width: 22rem">
@@ -328,6 +330,7 @@
                   <button class="btn btn-dark btn-md deleteItem" data-postid="${item.id}">Delete Post</button>
                   <br><br>
                   <button id="editItem" class="btn btn-dark btn-md goToEdit" data-postid="${item.id}">Edit Post</button>
+                  <button class="btn btn-dark btn-md markAsNotTraded" data-postid="${item.id}">Mark As Not Traded</button>
                 </div>
               </div>
               <br>
@@ -392,6 +395,36 @@
                 Swal.fire({
                   icon: 'success',
                   title: 'Your Item Has Been Marked As Traded',
+                  showConfirmButton: false,
+                  timer: 1000
+                })
+                window.setTimeout(function () {
+                  // Move to a new location or you can do something else
+                  location = "/profile";
+                }, 1000);
+              })
+            location.reload
+          }
+        })
+
+        document.addEventListener('click', event => {
+          if (event.target.classList.contains('markAsNotTraded')) {
+            console.log('ping')
+            axios.put(`/api/items/${event.target.dataset.postid}`,
+              {
+                isTraded: 0
+              }
+              , {
+                headers: {
+                  'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+              })
+              .then(res => {
+                console.log(res.data)
+                console.log("edited")
+                Swal.fire({
+                  icon: 'success',
+                  title: 'Your Item Has Been Marked As Not Traded',
                   showConfirmButton: false,
                   timer: 1000
                 })
